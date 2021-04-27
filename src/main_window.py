@@ -12,9 +12,12 @@ matplotlib.use('Qt5Agg')
 
 class MplCanvas(FigureCanvasQTAgg):
 
-    def __init__(self, parent=None, width=5, height=4, dpi=100):
-        fig = Figure(figsize=(width, height), dpi=dpi)
-        self.axes = fig.add_subplot(111)
+    def __init__(self, parent=None, subplot_count=1, dpi=100):
+        fig = Figure(dpi=dpi)
+        self.subplot_axes = []
+        for i in range(subplot_count):
+            curr_axes = fig.add_subplot(subplot_count, 1, i+1)
+            self.subplot_axes.append(curr_axes)
         super(MplCanvas, self).__init__(fig)
 
 
@@ -30,21 +33,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.plot_config_dict = plot_config_dict
         self.plot_config_dict.pop("horizontal_axis_col", None)
 
-        self.subplot_list = []
-
-        for subplot_data_list in self.plot_config_dict.keys():
-            subplot = self.setup_plot(
-                self.plot_config_dict[subplot_data_list])
-            self.subplot_list.append(subplot)
+        plt = self.setup_plots()
 
         # Create toolbar, passing canvas as first parament, parent (self, the MainWindow) as second.
-        toolbar = NavigationToolbar(self.subplot_list[0], self)
+        toolbar = NavigationToolbar(plt, self)
 
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(toolbar)
 
-        for subplot in self.subplot_list:
-            layout.addWidget(subplot)
+        layout.addWidget(plt)
 
         # Create a placeholder widget to hold our toolbar and canvas.
         widget = QtWidgets.QWidget()
@@ -53,10 +50,20 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.show()
 
-    def setup_plot(self, topic_list):
-        plt = MplCanvas(self, width=10, height=4, dpi=100)
-        for topic in topic_list:
-            plt.axes.plot(
-                self.data_df[self.horizontal_axis_col], self.data_df[topic], label=topic)
-        plt.axes.legend()
+    def setup_plots(self):
+
+        subplot_keys = list(self.plot_config_dict.keys())
+        print(subplot_keys)
+        subplot_count = len(subplot_keys)
+
+        plt = MplCanvas(self, subplot_count=subplot_count, dpi=100)
+
+        for i in range(subplot_count):
+            subplot_key = subplot_keys[i]
+            subplot_topics_list = self.plot_config_dict[subplot_key]
+            curr_axes = plt.subplot_axes[i]
+            for topic in subplot_topics_list:
+                curr_axes.plot(
+                    self.data_df[self.horizontal_axis_col], self.data_df[topic], label=topic)
+            curr_axes.legend()
         return plt
