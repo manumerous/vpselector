@@ -11,8 +11,8 @@ import sys
 from src.main_window import MainWindow
 
 
-def mavisual_pandas_cropper(data_df, plot_config_dict):
+def visual_pandas_cropper(data_df, plot_config_dict):
     app = QtWidgets.QApplication(sys.argv)
     w = MainWindow(data_df, plot_config_dict)
     app.exec_()
-    return
+    return w.cropped_data_df

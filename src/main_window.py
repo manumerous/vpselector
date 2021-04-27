@@ -7,11 +7,13 @@ from src import ConfirmSelectionWindow
 from src import MplWidget
 
 from PyQt5 import QtWidgets, QtCore
+from PyQt5.QtWidgets import QLabel, QPushButton
 
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.widgets import SpanSelector
 
 import pandas as pd
+import sys
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -39,7 +41,20 @@ class MainWindow(QtWidgets.QMainWindow):
         self.addToolBar(NavigationToolbar(self.plt.canvas, self))
 
         layout = QtWidgets.QVBoxLayout()
+
+        text_label = QLabel(
+            "Select Data by clicking the left mouse button and dragging the cursor")
+        text_label.setFixedSize(600, 30)
+
+        self.termination_button = QPushButton("Done selecting")
+        self.termination_button.setFixedSize(150, 30)
+        # connect signal
+        self.termination_button.clicked.connect(self._terminate)
+
+        layout.addWidget(text_label)
         layout.addWidget(self.plt)
+        layout.addWidget(self.termination_button,
+                         alignment=QtCore.Qt.AlignRight)
 
         widget = QtWidgets.QWidget()
         widget.setLayout(layout)
@@ -87,9 +102,9 @@ class MainWindow(QtWidgets.QMainWindow):
         if selection_accepted:
             print("selection accepted: ", min_x_val, max_x_val)
             cropped_df = self.crop_df(min_x_val, max_x_val)
+            cropped_df["old_index"] = cropped_df.index
             self.cropped_data_df = self.cropped_data_df.append(cropped_df)
-            self.cropped_data_df = self.cropped_data_df.reset_index()
-            print(self.cropped_data_df)
+            self.cropped_data_df = self.cropped_data_df.reset_index(drop=True)
 
         return
 
@@ -97,3 +112,7 @@ class MainWindow(QtWidgets.QMainWindow):
         cropped_df = self.data_df[self.x_axis_data >= t_start]
         cropped_df = cropped_df[self.x_axis_data <= t_end]
         return cropped_df
+
+    def _terminate(self):
+        self.close()
+        return
