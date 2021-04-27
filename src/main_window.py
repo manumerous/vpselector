@@ -16,8 +16,14 @@ class MplCanvas(FigureCanvasQTAgg):
         fig = Figure(dpi=dpi)
         self.subplot_axes = []
         for i in range(subplot_count):
-            curr_axes = fig.add_subplot(subplot_count, 1, i+1)
-            self.subplot_axes.append(curr_axes)
+
+            if i == 0:
+                ax1 = fig.add_subplot(subplot_count, 1, i+1)
+                self.subplot_axes.append(ax1)
+            else:
+                curr_ax = fig.add_subplot(
+                    subplot_count, 1, i+1, sharex=ax1)
+                self.subplot_axes.append(curr_ax)
         super(MplCanvas, self).__init__(fig)
 
 
