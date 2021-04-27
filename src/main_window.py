@@ -6,10 +6,12 @@ __license__ = "Apache-2.0"
 from src import ConfirmSelectionWindow
 from src import MplWidget
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.widgets import SpanSelector
+
+import pandas as pd
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -19,34 +21,42 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setWindowTitle("Visual Pandas Cropper")
 
         self.data_df = data_df
+        self.cropped_data_df = pd.DataFrame()
 
         # Prepare vertical col name and drop it from the plot config dict
-        self.horizontal_axis_col = plot_config_dict["horizontal_axis_col"]
+        self.x_axis_col = plot_config_dict["x_axis_col"]
         self.plot_config_dict = plot_config_dict
-        self.plot_config_dict.pop("horizontal_axis_col", None)
+        self.plot_config_dict.pop("x_axis_col", None)
+
+        self.x_axis_data = self.data_df[self.x_axis_col]
+        self.x_start = self.x_axis_data.iloc[0]
+        self.x_end = self.x_axis_data.iloc[-1]
+        print(self.x_end)
 
         self.setup_plots()
 
         # Create toolbar for simultaneous manipulation of all subplots
         self.addToolBar(NavigationToolbar(self.plt.canvas, self))
-        # toolbar = NavigationToolbar(self.plt, self)
 
         layout = QtWidgets.QVBoxLayout()
-        # layout.addWidget(toolbar)
-
         layout.addWidget(self.plt)
 
-        # Create a placeholder widget to hold the toolbar and canvas.
         widget = QtWidgets.QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
 
         self.show()
 
-    def on_region_select_callback(self, min_val, max_val):
-        print(min_val, max_val)
+    def on_region_select_callback(self, min_x_val, max_x_val):
+        self.plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
+        print(min_x_val, max_x_val)
         dialog_window = ConfirmSelectionWindow()
-        dialog_window.exec_()
+        selection_accepted = dialog_window.exec_()
+
+        self.plt.canvas.subplot_axes[0].set_xlim([self.x_start, self.x_end])
+
+        if selection_accepted:
+            print("selection accepted")
         return
 
     def setup_plots(self):
@@ -62,18 +72,9 @@ class MainWindow(QtWidgets.QMainWindow):
             subplot_topics_list = self.plot_config_dict[subplot_key]
             for topic in subplot_topics_list:
                 self.plt.canvas.subplot_axes[i].plot(
-                    self.data_df[self.horizontal_axis_col], self.data_df[topic], label=topic)
+                    self.data_df[self.x_axis_col], self.data_df[topic], label=topic)
 
                 self.plt.canvas.subplot_axes[i].legend()
-
-        # for i in range(subplot_count):
-        #     subplot_key = subplot_keys[i]
-        #     subplot_topics_list = self.plot_config_dict[subplot_key]
-        #     curr_axes = self.plt.subplot_axes[i]
-        #     for topic in subplot_topics_list:
-        #         curr_axes.plot(
-        #             self.data_df[self.horizontal_axis_col], self.data_df[topic], label=topic)
-        #     curr_axes.legend()
 
             self.plt.canvas.subplot_axes[i].span = SpanSelector(
                 self.plt.canvas.subplot_axes[i],
@@ -81,8 +82,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 direction="horizontal",
                 minspan=1,
                 useblit=True,
-                span_stays=True,
+                span_stays=False,
                 button=[1],
                 rectprops={"facecolor": "green", "alpha": 0.3})
 
         self.plt.show
+
+    def update_UI(self):
+        QtCore.QCoreApplication.processEvents()

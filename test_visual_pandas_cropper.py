@@ -12,7 +12,7 @@ from src.main_window import MainWindow
 
 def main():
     plot_config_dict = {
-        "horizontal_axis_col": "timestamp",
+        "x_axis_col": "timestamp",
         "sub_plt1_data": ["q0", "q1", "q2", "q3"],
         "sub_plt2_data": ["u0", "u1", "u2", "u3", "u4", "u5", "u6", "u7"]}
     data_df = pd.read_csv("resources/output.csv", index_col=0)
