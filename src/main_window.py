@@ -47,18 +47,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.show()
 
-    def on_region_select_callback(self, min_x_val, max_x_val):
-        self.plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
-        print(min_x_val, max_x_val)
-        dialog_window = ConfirmSelectionWindow()
-        selection_accepted = dialog_window.exec_()
-
-        self.plt.canvas.subplot_axes[0].set_xlim([self.x_start, self.x_end])
-
-        if selection_accepted:
-            print("selection accepted")
-        return
-
     def setup_plots(self):
 
         subplot_keys = list(self.plot_config_dict.keys())
@@ -88,5 +76,24 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.plt.show
 
-    def update_UI(self):
-        QtCore.QCoreApplication.processEvents()
+    def on_region_select_callback(self, min_x_val, max_x_val):
+        self.plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
+        print(min_x_val, max_x_val)
+        dialog_window = ConfirmSelectionWindow()
+        selection_accepted = dialog_window.exec_()
+
+        self.plt.canvas.subplot_axes[0].set_xlim([self.x_start, self.x_end])
+
+        if selection_accepted:
+            print("selection accepted: ", min_x_val, max_x_val)
+            cropped_df = self.crop_df(min_x_val, max_x_val)
+            self.cropped_data_df = self.cropped_data_df.append(cropped_df)
+            self.cropped_data_df = self.cropped_data_df.reset_index()
+            print(self.cropped_data_df)
+
+        return
+
+    def crop_df(self, t_start, t_end):
+        cropped_df = self.data_df[self.x_axis_data >= t_start]
+        cropped_df = cropped_df[self.x_axis_data <= t_end]
+        return cropped_df
