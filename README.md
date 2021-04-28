@@ -1,4 +1,4 @@
-# Visual Pandas Cropper
+# Visual Dataframe Selector
 
 The Visual pandas cropper is tool, that can be used to visually select numerical data from a pandas dataframe. For example if the dataframe contains temporally ordered data it is possible to select multiple time windows out of the original frame. The tool then automatically combines the visually selected time windows to a new dataframe. 
 
