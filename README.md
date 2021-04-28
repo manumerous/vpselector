@@ -15,7 +15,7 @@ Install the dependencies from the project folder:
 pip3 install -r requirements.txt
 ```
 
-## Run the Visual Pandas Cropper
+## Run the Visual Dataframe Selector
 
 To run the programm you can import the function visual_pandas_cropper(data_df, plot_config_dict) into your coding project. The format of the needed plot_config_dict can be seen in test_visual_pandas_cropper.py.
 
