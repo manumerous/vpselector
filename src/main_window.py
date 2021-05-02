@@ -14,6 +14,7 @@ from matplotlib.widgets import SpanSelector
 
 import pandas as pd
 import seaborn as sns
+import time
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -41,7 +42,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.addToolBar(NavigationToolbar(self.data_plt.canvas, self))
 
         w = QtWidgets.QWidget()
-        layout = QtWidgets.QGridLayout(w)
+        master_layout = QtWidgets.QGridLayout(w)
 
         text_label = QLabel(
             "Select Data by clicking the left mouse button and dragging the cursor")
@@ -52,19 +53,36 @@ class MainWindow(QtWidgets.QMainWindow):
         # connect signal
         self.termination_button.clicked.connect(self._terminate)
 
-        layout.addWidget(text_label, 0, 0)
-        layout.addWidget(self.data_plt, 1, 1)
-        layout.addWidget(self.hist_plt, 1, 0)
-        layout.addWidget(self.termination_button, 2, 1,
-                         alignment=QtCore.Qt.AlignRight)
+        self.save_csv_button = QPushButton("Save Result")
+        self.save_csv_button.setFixedSize(150, 30)
+        self.save_csv_button.setEnabled(False)
+        # connect signal
+        self.save_csv_button.clicked.connect(self._save_to_csv)
 
-        layout.setColumnMinimumWidth(0, 300)
-        layout.setColumnMinimumWidth(1, 300)
-        layout.setColumnStretch(0, 1)
-        layout.setColumnStretch(1, 3)
+        # this label currently prevents resizing of the first column. Shall be adapted in the future
+        # master_layout.addWidget(text_label, 0, 1)
+        master_layout.setColumnStretch(0, 1)
+        master_layout.setRowStretch(1, 1)
+
+        master_layout.setColumnMinimumWidth(0, 900)
+        master_layout.setColumnMinimumWidth(1, 450)
+        master_layout.setRowMinimumHeight(1, 500)
+        master_layout.addWidget(self.data_plt, 1, 0)
+        master_layout.addWidget(self.hist_plt, 1, 1)
+        master_layout.setColumnStretch(1, 0)
+
+        button_grid = QtWidgets.QWidget()
+        button_grid_layout = QtWidgets.QGridLayout(w)
+        button_grid_layout.addWidget(self.termination_button, 0, 1,
+                                     alignment=QtCore.Qt.AlignRight)
+        button_grid_layout.addWidget(self.save_csv_button, 0, 0,
+                                     alignment=QtCore.Qt.AlignRight)
+        button_grid.setLayout(button_grid_layout)
+        master_layout.addWidget(button_grid, 2, 1)
+        master_layout.setRowStretch(2, 0)
 
         widget = QtWidgets.QWidget()
-        widget.setLayout(layout)
+        widget.setLayout(master_layout)
         self.setCentralWidget(widget)
 
         self.show()
@@ -129,6 +147,7 @@ class MainWindow(QtWidgets.QMainWindow):
             cropped_df["old_index"] = cropped_df.index
             self.cropped_data_df = self.cropped_data_df.append(cropped_df)
             self.cropped_data_df = self.cropped_data_df.reset_index(drop=True)
+            self.save_csv_button.setEnabled(True)
 
         return
 
@@ -136,6 +155,23 @@ class MainWindow(QtWidgets.QMainWindow):
         cropped_df = self.data_df[self.x_axis_data >= t_start]
         cropped_df = cropped_df[self.x_axis_data <= t_end]
         return cropped_df
+
+    def _save_to_csv(self):
+
+        file_dialog = QtWidgets.QFileDialog(self)
+        timestr = time.strftime("%Y-%m-%d-%H-%M-%S")
+        default_file_name = "output-" + timestr + ".csv"
+        name = file_dialog.getSaveFileName(
+            self, 'Save Dataframe to csv', default_file_name)
+        file_path = name[0]
+        if (file_path[-4:] != ".csv"):
+            print("Wrong file name extension detected, adapting to *.csv")
+            split_path = file_path.split(".", 1)
+            file_path = split_path[0] + ".csv"
+        print("Saving file to: ", file_path)
+        self.cropped_data_df.to_csv(file_path, index=True)
+
+        return
 
     def _terminate(self):
         self.close()
