@@ -1,9 +1,8 @@
 # Visual Dataframe Selector
 
-The Visual pandas cropper is tool, that can be used to visually select numerical data from a pandas dataframe. For example if the dataframe contains temporally ordered data it is possible to select multiple time windows out of the original frame. The tool then automatically combines the visually selected time windows to a new dataframe. 
+The Visual pandas cropper is tool, that can be used to visually select numerical data from a pandas dataframe. For example if the dataframe contains temporally ordered data it is possible to select multiple time windows out of the original frame. The tool then automatically combines the visually selected time windows to a new dataframe.
 
 ![image](https://user-images.githubusercontent.com/18735094/116285521-7a101100-a78e-11eb-99fa-97dd5074690d.png)
-
 
 ## Install dependencies
 
@@ -17,16 +16,16 @@ pip3 install -r requirements.txt
 
 ## Run the Visual Dataframe Selector
 
-To run the programm you can import the function visual_pandas_cropper(data_df, plot_config_dict) into your coding project. The format of the needed plot_config_dict can be seen in test_visual_pandas_cropper.py.
+To run the programm you can import the function visual_pandas_selector(data_df, plot_config_dict) into your coding project. The format of the needed plot_config_dict can be seen in test_visual_pandas_cropper.py.
 
 Alternatively you can test the tool with some reference data by running:
 
-
 ```
-python3 test_visual_pandas_cropper.py
+python3 test_visual_pandas_selector.py
 ```
 
 ## Use the Tool
+
 - Left click with your mouse and drag to define the desired horizontal window of the data to be selected
 - Confirm or cancel data selection
 - Click somewhere in the plot to reset to original view (should be automated in the future)
