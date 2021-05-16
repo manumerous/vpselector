@@ -3,7 +3,11 @@ __maintainer__ = "Manuel Galliker"
 __license__ = "Apache-2.0"
 
 import pandas as pd
-from data_selector import select_visual_data
+
+try:
+    from data_selector import select_visual_data
+except:
+    from visual_dataframe_selector.data_selector import select_visual_data
 
 
 def test_visual_dataframe_selector():
