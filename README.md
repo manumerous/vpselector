@@ -26,7 +26,7 @@ To run the programm you can import the function visual_pandas_selector(data_df, 
 Alternatively you can test the tool with some reference data by running:
 
 ```
-python3 test_visual_pandas_selector.py
+python3 test_visual_dataframe_selector.py
 ```
 
 ## Use the Tool

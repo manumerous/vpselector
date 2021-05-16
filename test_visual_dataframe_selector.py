@@ -6,7 +6,7 @@ import pandas as pd
 from visual_dataframe_selector import select_visual_data
 
 
-def test_visual_pandas_selector():
+def test_visual_dataframe_selector():
     plot_config_dict = {
         "x_axis_col": "timestamp",
         "sub_plt1_data": ["q0", "q1", "q2", "q3"],
@@ -20,4 +20,4 @@ def test_visual_pandas_selector():
 
 
 if __name__ == "__main__":
-    test_visual_pandas_selector()
+    test_visual_dataframe_selector()
