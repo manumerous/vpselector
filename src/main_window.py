@@ -18,8 +18,12 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 from matplotlib.widgets import SpanSelector
 
 import pandas as pd
+import numpy as np
 import seaborn as sns
 import time
+import copy
+
+pd.set_option('mode.chained_assignment', None)
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -39,15 +43,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.x_axis_data = self.data_df[self.x_axis_col]
         self.x_start = self.x_axis_data.iloc[0]
         self.x_end = self.x_axis_data.iloc[-1]
-        print(self.x_end)
 
         self.setup_plots()
 
         # Create toolbar for simultaneous manipulation of all subplots
         self.addToolBar(NavigationToolbar(self.data_plt.canvas, self))
 
-        w = QtWidgets.QWidget()
-        master_layout = QtWidgets.QGridLayout(w)
+        master_layout = QtWidgets.QGridLayout()
 
         text_label = QLabel(
             "Select Data by clicking the left mouse button and dragging the cursor")
@@ -76,12 +78,12 @@ class MainWindow(QtWidgets.QMainWindow):
         master_layout.addWidget(self.hist_plt, 1, 1)
         master_layout.setColumnStretch(1, 0)
 
-        button_grid = QtWidgets.QWidget()
-        button_grid_layout = QtWidgets.QGridLayout(w)
+        button_grid_layout = QtWidgets.QGridLayout()
         button_grid_layout.addWidget(self.termination_button, 0, 1,
                                      alignment=QtCore.Qt.AlignRight)
         button_grid_layout.addWidget(self.save_csv_button, 0, 0,
                                      alignment=QtCore.Qt.AlignRight)
+        button_grid = QtWidgets.QWidget()
         button_grid.setLayout(button_grid_layout)
         master_layout.addWidget(button_grid, 2, 1)
         master_layout.setRowStretch(2, 0)
@@ -138,7 +140,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.data_plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
         cropped_df = self.crop_df(min_x_val, max_x_val)
         self.update_hist_plot(cropped_df)
-        print(min_x_val, max_x_val)
         dialog_window = ConfirmSelectionWindow()
         selection_accepted = dialog_window.exec_()
 
@@ -148,17 +149,18 @@ class MainWindow(QtWidgets.QMainWindow):
         self.update_hist_plot(self.data_df)
 
         if selection_accepted:
-            print("selection accepted: ", min_x_val, max_x_val)
-            cropped_df["old_index"] = cropped_df.index
+            print("selection accepted and added: ", min_x_val, max_x_val)
+            cropped_df["old_index"] = copy.deepcopy(cropped_df.index)
             self.cropped_data_df = self.cropped_data_df.append(cropped_df)
             self.cropped_data_df = self.cropped_data_df.reset_index(drop=True)
             self.save_csv_button.setEnabled(True)
 
         return
 
-    def crop_df(self, t_start, t_end):
-        cropped_df = self.data_df[self.x_axis_data >= t_start]
-        cropped_df = cropped_df[self.x_axis_data <= t_end]
+    def crop_df(self, x_start, x_end):
+        cropped_df = self.data_df[(self.x_axis_data >=
+                                  x_start) & (self.x_axis_data <= x_end)]
+        # cropped_df = cropped_df[]
         return cropped_df
 
     def _save_to_csv(self):
