@@ -1,3 +1,3 @@
 from . import src
-from . import visual_dataframe_selector
+from .visual_dataframe_selector import select_visual_data
 from . import test_visual_pandas_selector
