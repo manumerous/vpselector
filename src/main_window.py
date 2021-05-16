@@ -3,8 +3,13 @@ __author__ = "Manuel Galliker"
 __maintainer__ = "Manuel Galliker"
 __license__ = "Apache-2.0"
 
-from src import ConfirmSelectionWindow
-from src import MplWidget
+try:
+    from src.confirm_selection_window import ConfirmSelectionWindow
+    from src.mpl_widget import MplWidget
+except:
+    from visual_dataframe_selector.src.confirm_selection_window import ConfirmSelectionWindow
+    from visual_dataframe_selector.src.mpl_widget import MplWidget
+
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QLabel, QPushButton

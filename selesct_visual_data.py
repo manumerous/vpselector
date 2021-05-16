@@ -8,7 +8,10 @@ from pandas.core.indexes.base import Index
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 
-from src.main_window import MainWindow
+try:
+    from src.main_window import MainWindow
+except:
+    from visual_dataframe_selector.src.main_window import MainWindow
 
 
 def select_visual_data(data_df, plot_config_dict):
