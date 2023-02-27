@@ -121,9 +121,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 direction="horizontal",
                 minspan=1,
                 useblit=True,
-                span_stays=False,
                 button=[1],
-                rectprops={"facecolor": "green", "alpha": 0.3})
+                props={"facecolor": "green", "alpha": 0.3}
+                )
         return
 
     def update_hist_plot(self, df):
