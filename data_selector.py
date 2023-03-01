@@ -19,3 +19,11 @@ def select_visual_data(data_df, plot_config_dict):
     w = MainWindow(data_df, plot_config_dict)
     app.exec_()
     return w.cropped_data_df
+
+
+def select_visual_data_in_running_app(data_df, plot_config_dict, app):
+    w = MainWindow(data_df, plot_config_dict)
+    app.processEvents()  # Process events once before waiting
+    while w.isVisible():  # Loop until window is closed
+        app.processEvents()
+    return w.cropped_data_df
