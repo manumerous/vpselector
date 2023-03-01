@@ -123,7 +123,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 useblit=True,
                 button=[1],
                 props={"facecolor": "green", "alpha": 0.3}
-                )
+            )
         return
 
     def update_hist_plot(self, df):
@@ -151,7 +151,8 @@ class MainWindow(QtWidgets.QMainWindow):
         if selection_accepted:
             print("selection accepted and added: ", min_x_val, max_x_val)
             cropped_df["old_index"] = copy.deepcopy(cropped_df.index)
-            self.cropped_data_df = self.cropped_data_df.append(cropped_df)
+            self.cropped_data_df = pd.concat(
+                [self.cropped_data_df, cropped_df])
             self.cropped_data_df = self.cropped_data_df.reset_index(drop=True)
             self.save_csv_button.setEnabled(True)
 
