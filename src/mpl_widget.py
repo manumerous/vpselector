@@ -34,3 +34,8 @@ class MplWidget(QWidget):
         # self.canvas.axes = self.canvas.figure.add_subplot(111)
 
         self.setLayout(vertical_layout)
+
+    def update_selection_visualitation(self, selection: dict):
+        for subplot in self.canvas.subplot_axes:
+            subplot.axvspan(selection["start"], selection["end"],
+                            facecolor='grey', alpha=0.3)
