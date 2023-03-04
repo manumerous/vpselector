@@ -34,6 +34,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.data_df = data_df
         self.cropped_data_df = pd.DataFrame()
+        # list of selected tuples (start_index, end_index)
+        self.selection_list = []
 
         # Prepare vertical col name and drop it from the plot config dict
         self.x_axis_col = plot_config_dict["x_axis_col"]
@@ -150,17 +152,22 @@ class MainWindow(QtWidgets.QMainWindow):
 
         if selection_accepted:
             print("selection accepted and added: ", min_x_val, max_x_val)
+            self.selection_list.append({"start": min_x_val, "end": max_x_val})
             cropped_df["old_index"] = copy.deepcopy(cropped_df.index)
             self.cropped_data_df = pd.concat(
                 [self.cropped_data_df, cropped_df])
             self.cropped_data_df = self.cropped_data_df.reset_index(drop=True)
             self.save_csv_button.setEnabled(True)
+            self.data_plt.update_selection_visualitation(
+                self.selection_list[-1])
+            self.data_plt.canvas.draw()
+            self.update_hist_plot(self.data_df)
 
         return
 
     def crop_df(self, x_start, x_end):
         cropped_df = self.data_df[(self.x_axis_data >=
-                                  x_start) & (self.x_axis_data <= x_end)]
+                                   x_start) & (self.x_axis_data <= x_end)]
         # cropped_df = cropped_df[]
         return cropped_df
 
