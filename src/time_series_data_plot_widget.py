@@ -52,3 +52,5 @@ class TimeSeriesDataPlotWidget(DataFramePlotWidget):
         for subplot in self.canvas.subplot_axes:
             subplot.axvspan(selection["start"], selection["end"],
                             facecolor='grey', alpha=0.3)
+        self.canvas.draw()
+        return
