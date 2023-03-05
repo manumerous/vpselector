@@ -7,7 +7,8 @@ Hereby the user can specify which columns are plotted in which subplot. Furtherm
 
 The user can subsequentially select different horizontal data windows via click and drag and he tool then automatically combines the visually selected sections into a new dataframe.
 
-![Screenshot from 2021-05-02 19-40-25](https://user-images.githubusercontent.com/18735094/116822371-c2f50a80-ab7e-11eb-9f92-37e368873ef9.png)
+![image](https://user-images.githubusercontent.com/18735094/222962489-43e218ac-fcd1-4343-a569-69893b1ed8c8.png)
+
 
 ## Install dependencies
 
@@ -31,7 +32,10 @@ python3 test_visual_dataframe_selector.py
 
 ## Use the Tool
 
-- Left click with your mouse and drag to define the desired horizontal window of the data to be selected
-- Confirm or cancel data selection
-- The view automatically resets to contain all data and you can select the next data snipplet.
-- Once you could select all desired horizontal data windows click "done selecting"
+- Left click with your mouse and drag to define the desired horizontal window of the data to be selected.
+  - The current selection distribution is now visualized in the histogram plot on the right.
+- Confirm or cancel data selection.
+  - The already selected data is now marked by a grey span in the plot on the left.
+  - The plot on the right contains now the histogram of all selected data.
+- repeat as many times as needed.
+- Once you could select all desired horizontal data windows click "Done selecting"
