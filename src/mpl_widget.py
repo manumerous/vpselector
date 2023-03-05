@@ -1,5 +1,5 @@
-__author__ = "Manuel Galliker"
-__maintainer__ = "Manuel Galliker"
+__author__ = "Manuel Yves Galliker"
+__maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
 from matplotlib.figure import Figure
@@ -9,9 +9,9 @@ from PyQt5.QtWidgets import QVBoxLayout, QWidget
 
 class MplWidget(QWidget):
 
-    def __init__(self, parent=None, subplot_count=1):
+    def __init__(self, parentWindow=None, subplot_count=1):
 
-        QWidget.__init__(self, parent)
+        QWidget.__init__(self, parentWindow)
 
         self.canvas = FigureCanvas(Figure())
 
@@ -31,11 +31,4 @@ class MplWidget(QWidget):
                     subplot_count, 1, i+1, sharex=ax1)
                 self.canvas.subplot_axes.append(curr_ax)
 
-        # self.canvas.axes = self.canvas.figure.add_subplot(111)
-
         self.setLayout(vertical_layout)
-
-    def update_selection_visualitation(self, selection: dict):
-        for subplot in self.canvas.subplot_axes:
-            subplot.axvspan(selection["start"], selection["end"],
-                            facecolor='grey', alpha=0.3)

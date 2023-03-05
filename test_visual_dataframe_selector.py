@@ -1,5 +1,5 @@
-__author__ = "Manuel Galliker"
-__maintainer__ = "Manuel Galliker"
+__author__ = "Manuel Yves Galliker"
+__maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
 import pandas as pd
