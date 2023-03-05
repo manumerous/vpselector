@@ -49,10 +49,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         master_layout = QtWidgets.QGridLayout()
 
-        text_label = QLabel(
-            "Select Data by clicking the left mouse button and dragging the cursor")
-        text_label.setFixedSize(600, 30)
-
         self.termination_button = QPushButton("Done selecting")
         self.termination_button.setFixedSize(150, 30)
         # connect signal
@@ -64,16 +60,18 @@ class MainWindow(QtWidgets.QMainWindow):
         # connect signal
         self.save_csv_button.clicked.connect(self._save_to_csv)
 
-        # this label currently prevents resizing of the first column. Shall be adapted in the future
-        # master_layout.addWidget(text_label, 0, 1)
-        master_layout.setColumnStretch(0, 1)
-        master_layout.setRowStretch(1, 1)
-
         master_layout.setColumnMinimumWidth(0, 900)
-        master_layout.setColumnMinimumWidth(1, 450)
-        master_layout.setRowMinimumHeight(1, 500)
-        master_layout.addWidget(self.data_plt, 1, 0)
-        master_layout.addWidget(self.hist_plt, 1, 1)
+        master_layout.setRowMinimumHeight(2, 500)
+
+        self.time_series_plot_label = QLabel(
+            "Click and drag to select data using the mouse.")
+        self.time_series_plot_label.setFixedHeight(50)
+        self.hist_plot_label = QLabel(
+            "Histogram of all selected data.")
+        master_layout.addWidget(self.time_series_plot_label, 1, 0)
+        master_layout.addWidget(self.hist_plot_label, 1, 1)
+        master_layout.addWidget(self.data_plt, 2, 0)
+        master_layout.addWidget(self.hist_plt, 2, 1)
         master_layout.setColumnStretch(1, 0)
 
         button_grid_layout = QtWidgets.QGridLayout()
@@ -83,8 +81,8 @@ class MainWindow(QtWidgets.QMainWindow):
                                      alignment=QtCore.Qt.AlignRight)
         button_grid = QtWidgets.QWidget()
         button_grid.setLayout(button_grid_layout)
-        master_layout.addWidget(button_grid, 2, 1)
-        master_layout.setRowStretch(2, 0)
+        master_layout.addWidget(button_grid, 3, 1)
+        master_layout.setRowStretch(2, 1)
 
         widget = QtWidgets.QWidget()
         widget.setLayout(master_layout)
@@ -95,6 +93,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def on_region_select_callback(self, min_x_val, max_x_val):
         # self.data_plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
         cropped_df = self.crop_df(min_x_val, max_x_val)
+        self.hist_plot_label.setText("Histogram of currently selected data.")
         self.hist_plt.plot(cropped_df)
         dialog_window = ConfirmSelectionWindow()
         selection_accepted = dialog_window.exec_()
@@ -109,7 +108,11 @@ class MainWindow(QtWidgets.QMainWindow):
             self.save_csv_button.setEnabled(True)
             self.data_plt.update_selection_visualitation(
                 self.selection_list[-1])
+        if self.cropped_data_df.empty:
+            self.hist_plt.clear()
+        else:
             self.hist_plt.plot(self.cropped_data_df)
+        self.hist_plot_label.setText("Histogram of all selected data.")
 
         return
 

@@ -28,3 +28,9 @@ class HistogramPlotWidget(DataFramePlotWidget):
 
         self.canvas.draw()
         return
+
+    def clear(self):
+        for i in range(self.subplot_count):
+            self.canvas.subplot_axes[i].clear()
+        self.canvas.draw()
+        return
