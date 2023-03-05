@@ -1,4 +1,4 @@
 Visual Pandas Cropper
 Copyright 2016 The Apache Software Foundation.
 
-This software was developed by Manuel Galliker (@manumerous, manuel.galliker@gmx.ch)
+This software was developed by Manuel Yves Galliker (@manumerous, manuel.galliker@gmx.ch)

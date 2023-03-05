@@ -1,25 +1,24 @@
-
-__author__ = "Manuel Galliker"
-__maintainer__ = "Manuel Galliker"
+__author__ = "Manuel Yves Galliker"
+__maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
 try:
     from src.confirm_selection_window import ConfirmSelectionWindow
-    from src.mpl_widget import MplWidget
+    from src.time_series_data_plot_widget import TimeSeriesDataPlotWidget
+    from src.histogram_plot_widget import HistogramPlotWidget
 except:
     from visual_dataframe_selector.src.confirm_selection_window import ConfirmSelectionWindow
-    from visual_dataframe_selector.src.mpl_widget import MplWidget
+    from visual_dataframe_selector.src.time_series_data_plot_widget import TimeSeriesDataPlotWidget
+    from visual_dataframe_selector.src.histogram_plot_widget import HistogramPlotWidget
 
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QLabel, QPushButton
 
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from matplotlib.widgets import SpanSelector
+
 
 import pandas as pd
-import numpy as np
-import seaborn as sns
 import time
 import copy
 
@@ -37,16 +36,13 @@ class MainWindow(QtWidgets.QMainWindow):
         # list of selected tuples (start_index, end_index)
         self.selection_list = []
 
-        # Prepare vertical col name and drop it from the plot config dict
-        self.x_axis_col = plot_config_dict["x_axis_col"]
-        self.plot_config_dict = plot_config_dict
-        self.plot_config_dict.pop("x_axis_col", None)
+        self.x_axis_data = self.data_df[plot_config_dict["x_axis_col"]]
 
-        self.x_axis_data = self.data_df[self.x_axis_col]
-        self.x_start = self.x_axis_data.iloc[0]
-        self.x_end = self.x_axis_data.iloc[-1]
-
-        self.setup_plots()
+        self.data_plt = TimeSeriesDataPlotWidget(
+            plot_config_dict, parentWindow=self)
+        self.data_plt.plot(self.data_df)
+        self.hist_plt = HistogramPlotWidget(
+            plot_config_dict, parentWindow=self)
 
         # Create toolbar for simultaneous manipulation of all subplots
         self.addToolBar(NavigationToolbar(self.data_plt.canvas, self))
@@ -96,59 +92,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.show()
 
-    def setup_plots(self):
-
-        self.subplot_keys = list(self.plot_config_dict.keys())
-        self.subplot_count = len(self.subplot_keys)
-
-        self.data_plt = MplWidget(self, subplot_count=self.subplot_count)
-        self.hist_plt = MplWidget(self, subplot_count=self.subplot_count)
-
-        for i in range(self.subplot_count):
-
-            subplot_key = self.subplot_keys[i]
-            subplot_topics_list = self.plot_config_dict[subplot_key]
-            for topic in subplot_topics_list:
-                self.data_plt.canvas.subplot_axes[i].plot(
-                    self.data_df[self.x_axis_col], self.data_df[topic], label=topic)
-
-                self.data_plt.canvas.subplot_axes[i].legend()
-
-            sns.histplot(self.data_df[subplot_topics_list],
-                         ax=self.hist_plt.canvas.subplot_axes[i], stat="probability")
-
-            self.data_plt.canvas.subplot_axes[i].span = SpanSelector(
-                self.data_plt.canvas.subplot_axes[i],
-                onselect=self.on_region_select_callback,
-                direction="horizontal",
-                minspan=1,
-                useblit=True,
-                button=[1],
-                props={"facecolor": "green", "alpha": 0.3}
-            )
-        return
-
-    def update_hist_plot(self, df):
-        for i in range(self.subplot_count):
-            self.hist_plt.canvas.subplot_axes[i].clear()
-            subplot_key = self.subplot_keys[i]
-            subplot_topics_list = self.plot_config_dict[subplot_key]
-            sns.histplot(df[subplot_topics_list],
-                         ax=self.hist_plt.canvas.subplot_axes[i], stat="probability")
-        self.hist_plt.canvas.draw()
-        return
-
     def on_region_select_callback(self, min_x_val, max_x_val):
-        self.data_plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
+        # self.data_plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
         cropped_df = self.crop_df(min_x_val, max_x_val)
-        self.update_hist_plot(cropped_df)
+        self.hist_plt.plot(cropped_df)
         dialog_window = ConfirmSelectionWindow()
         selection_accepted = dialog_window.exec_()
-
-        self.data_plt.canvas.subplot_axes[0].set_xlim(
-            [self.x_start, self.x_end])
-        self.data_plt.canvas.draw()
-        self.update_hist_plot(self.data_df)
 
         if selection_accepted:
             print("selection accepted and added: ", min_x_val, max_x_val)
@@ -160,15 +109,13 @@ class MainWindow(QtWidgets.QMainWindow):
             self.save_csv_button.setEnabled(True)
             self.data_plt.update_selection_visualitation(
                 self.selection_list[-1])
-            self.data_plt.canvas.draw()
-            self.update_hist_plot(self.data_df)
+            self.hist_plt.plot(self.cropped_data_df)
 
         return
 
     def crop_df(self, x_start, x_end):
         cropped_df = self.data_df[(self.x_axis_data >=
                                    x_start) & (self.x_axis_data <= x_end)]
-        # cropped_df = cropped_df[]
         return cropped_df
 
     def _save_to_csv(self):
