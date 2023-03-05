@@ -43,7 +43,7 @@ class TimeSeriesDataPlotWidget(DataFramePlotWidget):
             for topic in subplot_topics_list:
                 self.canvas.subplot_axes[i].plot(
                     df[self.x_axis_col], df[topic], label=topic)
-                self.canvas.subplot_axes[i].legend()
+                self.canvas.subplot_axes[i].legend(loc='lower right')
 
         self.canvas.draw()
         return
