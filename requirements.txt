@@ -4,3 +4,4 @@ PyQt5==5.14.0
 matplotlib>=3.7.1
 seaborn>=0.11.1
 overrides>=7.3.1
+black>=23.3.0
