@@ -14,8 +14,7 @@ from overrides import override
 
 class TimeSeriesDataPlotWidget(DataFramePlotWidget):
     def __init__(self, plot_config_dict: dict, parentWindow):
-        super(TimeSeriesDataPlotWidget, self).__init__(
-            plot_config_dict, parentWindow)
+        super(TimeSeriesDataPlotWidget, self).__init__(plot_config_dict, parentWindow)
         self.setup_span(parentWindow)
 
     def setup_span(self, parentWindow):
@@ -27,7 +26,7 @@ class TimeSeriesDataPlotWidget(DataFramePlotWidget):
                 minspan=1,
                 useblit=True,
                 button=[1],
-                props={"facecolor": "green", "alpha": 0.3}
+                props={"facecolor": "green", "alpha": 0.3},
             )
 
     @override
@@ -42,15 +41,17 @@ class TimeSeriesDataPlotWidget(DataFramePlotWidget):
             subplot_topics_list = self.plot_config_dict[subplot_key]
             for topic in subplot_topics_list:
                 self.canvas.subplot_axes[i].plot(
-                    df[self.x_axis_col], df[topic], label=topic)
-                self.canvas.subplot_axes[i].legend(loc='lower right')
+                    df[self.x_axis_col], df[topic], label=topic
+                )
+                self.canvas.subplot_axes[i].legend(loc="lower right")
 
         self.canvas.draw()
         return
 
     def update_selection_visualitation(self, selection: dict):
         for subplot in self.canvas.subplot_axes:
-            subplot.axvspan(selection["start"], selection["end"],
-                            facecolor='grey', alpha=0.3)
+            subplot.axvspan(
+                selection["start"], selection["end"], facecolor="grey", alpha=0.3
+            )
         self.canvas.draw()
         return
