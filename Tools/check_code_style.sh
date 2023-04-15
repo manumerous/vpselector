@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Fix style recursively in all the repository
-sh fix_code_style.sh ..
+sh Tools/fix_code_style.sh .
 
 # Print the diff with the remote branch (empty if no diff)
 git --no-pager diff -U0 --color
