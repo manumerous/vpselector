@@ -14,8 +14,7 @@ from overrides import override
 
 class HistogramPlotWidget(DataFramePlotWidget):
     def __init__(self, plot_config_dict: dict, parentWindow):
-        super(HistogramPlotWidget, self).__init__(
-            plot_config_dict, parentWindow)
+        super(HistogramPlotWidget, self).__init__(plot_config_dict, parentWindow)
 
     @override
     def plot(self, df: pd.DataFrame):
@@ -23,8 +22,11 @@ class HistogramPlotWidget(DataFramePlotWidget):
             self.canvas.subplot_axes[i].clear()
             subplot_key = self.subplot_keys[i]
             subplot_topics_list = self.plot_config_dict[subplot_key]
-            sns.histplot(df[subplot_topics_list],
-                         ax=self.canvas.subplot_axes[i], stat="probability")
+            sns.histplot(
+                df[subplot_topics_list],
+                ax=self.canvas.subplot_axes[i],
+                stat="probability",
+            )
 
         self.canvas.draw()
         return

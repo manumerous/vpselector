@@ -21,10 +21,9 @@ class DataFramePlotWidget(MplWidget):
         self.subplot_keys = list(self.plot_config_dict.keys())
         self.subplot_count = len(self.subplot_keys)
 
-        super(DataFramePlotWidget, self).__init__(
-            parentWindow, self.subplot_count)
+        super(DataFramePlotWidget, self).__init__(parentWindow, self.subplot_count)
 
     @abstractmethod
     def plot(self, df: pd.DataFrame):
-        """ Visualize the data from df in each subplot according to the specified columns in self.plot_config_dict. """
+        """Visualize the data from df in each subplot according to the specified columns in self.plot_config_dict."""
         pass

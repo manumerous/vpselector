@@ -10,8 +10,7 @@ class ConfirmSelectionWindow(QDialog):
     def __init__(self):
         super().__init__()
 
-        buttonBox = QDialogButtonBox(
-            QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
+        buttonBox = QDialogButtonBox(QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
 
         buttonBox.accepted.connect(self.accept)
         buttonBox.rejected.connect(self.reject)
