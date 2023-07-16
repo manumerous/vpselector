@@ -1,6 +1,6 @@
 # Visual Dataframe Selector
 
-The Visual pandas cropper is tool, that can be used to visually select numerical data from a pandas dataframe. This can be usefull for many applications like for example data selection for machine learning or system identification.
+The Visual Dataframe selector is a tool, that can be used to visually select numerical data from a pandas dataframe. This can be usefull for many applications like for example data selection for machine learning or system identification.
 
 The tool is configurable in order to plot a range of dataframe columns in vertically stacked subplots.
 Hereby the user can specify which columns are plotted in which subplot. Furthermore, a histogram is included to get a rough idea on the distribution of the data.
