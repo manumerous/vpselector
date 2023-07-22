@@ -1,4 +1,4 @@
-# Visual Dataframe Selector
+# panorama-frame - A Visual Dataframe Selector
 
 The Visual Dataframe selector is a tool, that can be used to visually select numerical data from a pandas dataframe. This can be usefull for many applications like for example data selection for machine learning or system identification.
 
@@ -26,7 +26,7 @@ To run the programm you can import the function visual_pandas_selector(data_df, 
 Alternatively you can test the tool with some reference data by running:
 
 ```
-python3 test_visual_dataframe_selector.py
+python3 test_panorama_frame.py
 ```
 
 ## Use the Tool
