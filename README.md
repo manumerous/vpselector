@@ -7,7 +7,8 @@ Hereby the user can specify which columns are plotted in which subplot. Furtherm
 
 The user can subsequentially select different horizontal data windows via click and drag and he tool then automatically combines the visually selected sections into a new dataframe.
 
-![visual_pandas_curator(3)](https://github.com/manumerous/visual_pandas_curator/assets/18735094/29fb830e-3272-418b-b74d-b19283b88fb0)
+![ezgif com-gif-maker(1)](https://github.com/manumerous/visual-pandas-curator/assets/18735094/b5ebbb99-d2f7-4901-b101-cbeed6c230aa)
+
 
 ## Install dependencies
 
