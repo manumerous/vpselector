@@ -18,9 +18,9 @@ def select_visual_data(data : pd.DataFrame , plot_config : dict):
     return w.cropped_data
 
 # use this function to include the visual data selection in a running pyqt app
-def select_visual_data_in_running_app(data, plot_config : dict, app):
+def select_visual_data_in_pyqt_app(data, plot_config : dict, pyqt_app):
     w = MainWindow(data, plot_config)
-    app.processEvents()  # Process events once before waiting
+    pyqt_app.processEvents()  # Process events once before waiting
     while w.isVisible():  # Loop until window is closed
-        app.processEvents()
+        pyqt_app.processEvents()
     return w.cropped_data
