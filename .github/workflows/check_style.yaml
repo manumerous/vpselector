@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install requirements
-      run: pip install -r requirements.txt
+      run: pip install .
     - name: Check Code format
       run: |
         ./scripts/check_code_style.sh .
