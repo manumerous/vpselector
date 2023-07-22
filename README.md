@@ -17,7 +17,7 @@ Install the dependencies from the top-level project folder using:
 pip install .
 ```
 
-## Run the Visual Dataframe Selector
+## Run the Example 
 
 To run the programm you can import the function visual_pandas_selector(data_df, plot_config_dict) into your coding project. The format of the needed plot_config_dict can be seen in test_visual_pandas_cropper.py.
 
@@ -27,7 +27,7 @@ Alternatively you can test the tool with some reference data by running:
 python3 visual_pandas_example.py
 ```
 
-## Use the Tool
+#### Use the Tool
 
 - Left click with your mouse and drag to define the desired horizontal window of the data to be selected.
   - The current selection distribution is now visualized in the histogram plot on the right.
@@ -36,3 +36,4 @@ python3 visual_pandas_example.py
   - The plot on the right contains now the histogram of all selected data.
 - repeat as many times as needed.
 - Once you could select all desired horizontal data windows click "Done selecting"
+
