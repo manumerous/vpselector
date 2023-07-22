@@ -7,7 +7,7 @@ Hereby the user can specify which columns are plotted in which subplot. Furtherm
 
 The user can subsequentially select different horizontal data windows via click and drag and he tool then automatically combines the visually selected sections into a new dataframe.
 
-![image](https://user-images.githubusercontent.com/18735094/222962489-43e218ac-fcd1-4343-a569-69893b1ed8c8.png)
+![visual_dataframe_selector_animation](https://github.com/manumerous/visual_dataframe_selector/assets/18735094/4cd1211c-9025-4d40-a1c8-bfbe43648592)
 
 
 ## Install dependencies
