@@ -17,11 +17,16 @@ Install the dependencies from the top-level project folder using:
 pip install .
 ```
 
+## Include in your project
+
+To include the visual-pandas-curator in your project you can import it using `import visual_pandas_curator`. Then simply use:
+
+- If your project does not contain a pyqt application: `select_visual_data(data : pd.DataFrame, plot_config : dict)` 
+
+- To add the visual-pandas-curator to an existing pyqt application: `select_visual_data_in_pyqt_app(data : pd.DataFrame, plot_config : dict, pyqt_app)` 
+
+
 ## Run the Example 
-
-To run the programm you can import the function visual_pandas_selector(data_df, plot_config_dict) into your coding project. The format of the needed plot_config_dict can be seen in test_visual_pandas_cropper.py.
-
-Alternatively you can test the tool with some reference data by running:
 
 ```bash
 python3 visual_pandas_example.py
@@ -36,4 +41,3 @@ python3 visual_pandas_example.py
   - The plot on the right contains now the histogram of all selected data.
 - repeat as many times as needed.
 - Once you could select all desired horizontal data windows click "Done selecting"
-
