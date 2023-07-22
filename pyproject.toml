@@ -1,11 +1,11 @@
 [project]
-name = "panorama-frame"
+name = "visual-pandas-curator"
 version = "0.1.0"
 description = "A simple tool to visualize and interactively select time series data out of a Pandas DataFrame."
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE.txt"}
-keywords = ["python", "dataframe", "pandas", "visualization", "data selection"]
+keywords = ["python", "dataframe", "pandas", "visualization", "data selection", "time-series data", "data tools", "data science", "data-driven engineering", "machine learning", "system identification"]
 authors = [
   {email = "manuel.galliker@gmx.ch"},
   {name = "Manuel Yves Galliker"}

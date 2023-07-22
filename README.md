@@ -1,6 +1,6 @@
-# panorama-frame - A Visual Dataframe Selector
+# visual-pandas-curator
 
-The Visual Dataframe selector is a tool, that can be used to visually select numerical data from a pandas dataframe. This can be usefull for many applications like for example data selection for machine learning or system identification.
+The Visual Pandas Curator is a tool to visually select portions of numeric time-series data from a pandas dataframe. The tool is intended to simplify the data selection process needed in for example machine learning, regression or system identification tasks.
 
 The tool is configurable in order to plot a range of dataframe columns in vertically stacked subplots.
 Hereby the user can specify which columns are plotted in which subplot. Furthermore, a histogram is included to get a rough idea on the distribution of the data.
@@ -16,7 +16,7 @@ The use the visual pandas cropper you need to install python 3.8 and the needed 
 Install the dependencies from the project folder:
 
 ```
-pip3 install -r requirements.txt
+pip install .
 ```
 
 ## Run the Visual Dataframe Selector
@@ -26,7 +26,7 @@ To run the programm you can import the function visual_pandas_selector(data_df, 
 Alternatively you can test the tool with some reference data by running:
 
 ```
-python3 test_panorama_frame.py
+python3 test_visual_pandas_curator.py
 ```
 
 ## Use the Tool
