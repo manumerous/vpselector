@@ -1,0 +1,36 @@
+[project]
+name = "panorama-frame"
+version = "0.1.0"
+description = "A simple tool to visualize and interactively select time series data out of a Pandas DataFrame."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE.txt"}
+keywords = ["python", "dataframe", "pandas", "visualization", "data selection"]
+authors = [
+  {email = "manuel.galliker@gmx.ch"},
+  {name = "Manuel Yves Galliker"}
+]
+maintainers = [
+  {name = "Manuel Yves Galliker", email = "manuel.galliker@gmx.ch"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+dependencies = [
+  "pandas >= 1.1.5",
+  "PyQt5==5.14.0",
+  "matplotlib>=3.7.1",
+  "seaborn>=0.11.1",
+  "overrides>=7.3.1",
+]
+
+[project.optional-dependencies]
+format = [
+  "black >= 23.3.0"
+]
+
+[project.urls]
+documentation = "https://github.com/manumerous/visual_dataframe_selector/blob/master/README.md"
+repository = "https://github.com/manumerous/visual_dataframe_selector"
