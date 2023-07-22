@@ -1,6 +1,6 @@
 # visual-pandas-curator
 
-The Visual Pandas Curator is a tool to visually select portions of numeric time-series data from a pandas dataframe. The tool is intended to simplify the data selection process needed in for example machine learning, regression or system identification tasks.
+The Visual Pandas Curator is a tool to visually select portions of numeric time-series data from a pandas dataframe. The tool is intended to provide an fast interactive way for manual data selection, as can be very useful in for example machine learning, regression or system identification.
 
 The tool is configurable in order to plot a range of dataframe columns in vertically stacked subplots.
 Hereby the user can specify which columns are plotted in which subplot. Furthermore, a histogram is included to get a rough idea on the distribution of the data.
