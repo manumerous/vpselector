@@ -24,7 +24,7 @@ To run the programm you can import the function visual_pandas_selector(data_df, 
 Alternatively you can test the tool with some reference data by running:
 
 ```bash
-python3 test_visual_pandas_curator.py
+python3 visual_pandas_example.py
 ```
 
 ## Use the Tool
