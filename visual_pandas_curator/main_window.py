@@ -3,17 +3,17 @@ __maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
 try:
-    from src.confirm_selection_window import ConfirmSelectionWindow
-    from src.time_series_data_plot_widget import TimeSeriesDataPlotWidget
-    from src.histogram_plot_widget import HistogramPlotWidget
+    from visual_pandas_curator.confirm_selection_window import ConfirmSelectionWindow
+    from visual_pandas_curator.time_series_data_plot_widget import TimeSeriesDataPlotWidget
+    from visual_pandas_curator.histogram_plot_widget import HistogramPlotWidget
 except:
-    from visual_dataframe_selector.src.confirm_selection_window import (
+    from visual_pandas_curator.src.confirm_selection_window import (
         ConfirmSelectionWindow,
     )
-    from visual_dataframe_selector.src.time_series_data_plot_widget import (
+    from visual_pandas_curator.src.time_series_data_plot_widget import (
         TimeSeriesDataPlotWidget,
     )
-    from visual_dataframe_selector.src.histogram_plot_widget import HistogramPlotWidget
+    from visual_pandas_curator.src.histogram_plot_widget import HistogramPlotWidget
 
 
 from PyQt5 import QtWidgets, QtCore

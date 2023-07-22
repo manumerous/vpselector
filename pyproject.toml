@@ -32,4 +32,4 @@ format = [
 ]
 
 [project.urls]
-repository = "https://github.com/manumerous/visual_dataframe_selector"
+repository = "https://github.com/manumerous/visual_pandas_curator"

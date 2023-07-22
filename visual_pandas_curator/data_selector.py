@@ -8,19 +8,16 @@ from pandas.core.indexes.base import Index
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 
-try:
-    from src.main_window import MainWindow
-except:
-    from visual_dataframe_selector.src.main_window import MainWindow
+from visual_pandas_curator.main_window import MainWindow
 
-
+# use this function if no pyqt app is running
 def select_visual_data(data_df, plot_config_dict):
     app = QtWidgets.QApplication(sys.argv)
     w = MainWindow(data_df, plot_config_dict)
     app.exec_()
     return w.cropped_data_df
 
-
+# use this function to include the visual data selection in a running pyqt app
 def select_visual_data_in_running_app(data_df, plot_config_dict, app):
     w = MainWindow(data_df, plot_config_dict)
     app.processEvents()  # Process events once before waiting

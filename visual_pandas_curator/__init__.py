@@ -5,3 +5,4 @@ from .time_series_data_plot_widget import TimeSeriesDataPlotWidget
 from .histogram_plot_widget import HistogramPlotWidget
 from . import main_window
 from .main_window import MainWindow
+from .data_selector import select_visual_data, select_visual_data_in_running_app

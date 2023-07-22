@@ -1,3 +1,2 @@
-from . import src
-from . import data_selector
-from . import test_visual_dataframe_selector
+from . import visual_pandas_curator
+from . import test_visual_pandas_curator

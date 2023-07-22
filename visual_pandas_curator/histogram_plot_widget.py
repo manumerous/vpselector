@@ -3,9 +3,9 @@ __maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
 try:
-    from src.dataframe_plot_widget import DataFramePlotWidget
+    from visual_pandas_curator.dataframe_plot_widget import DataFramePlotWidget
 except:
-    from visual_dataframe_selector.src.dataframe_plot_widget import DataFramePlotWidget
+    from visual_pandas_curator.src.dataframe_plot_widget import DataFramePlotWidget
 
 import seaborn as sns
 import pandas as pd
