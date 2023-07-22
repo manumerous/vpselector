@@ -1,7 +1,7 @@
 [project]
 name = "visual-pandas-curator"
 version = "0.1.0"
-description = "A simple tool to visualize and interactively select time series data out of a Pandas DataFrame."
+description = "Visualize and interactively select time-series data from a pandas DataFrame."
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE.txt"}
