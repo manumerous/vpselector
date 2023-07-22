@@ -2,10 +2,8 @@ __author__ = "Manuel Yves Galliker"
 __maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
-try:
-    from visual_pandas_curator.mpl_widget import MplWidget
-except:
-    from visual_pandas_curator.src.mpl_widget import MplWidget
+
+from visual_pandas_curator.widgets.mpl_widget import MplWidget
 
 from abc import abstractmethod
 import pandas as pd

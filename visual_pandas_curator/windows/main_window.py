@@ -2,25 +2,14 @@ __author__ = "Manuel Yves Galliker"
 __maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
-try:
-    from visual_pandas_curator.confirm_selection_window import ConfirmSelectionWindow
-    from visual_pandas_curator.time_series_data_plot_widget import TimeSeriesDataPlotWidget
-    from visual_pandas_curator.histogram_plot_widget import HistogramPlotWidget
-except:
-    from visual_pandas_curator.src.confirm_selection_window import (
-        ConfirmSelectionWindow,
-    )
-    from visual_pandas_curator.src.time_series_data_plot_widget import (
-        TimeSeriesDataPlotWidget,
-    )
-    from visual_pandas_curator.src.histogram_plot_widget import HistogramPlotWidget
 
+from visual_pandas_curator.windows.confirm_selection_window import ConfirmSelectionWindow
+from visual_pandas_curator.widgets.time_series_data_plot_widget import TimeSeriesDataPlotWidget
+from visual_pandas_curator.widgets.histogram_plot_widget import HistogramPlotWidget
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QLabel, QPushButton
-
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-
 
 import pandas as pd
 import time

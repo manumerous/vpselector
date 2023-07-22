@@ -5,7 +5,6 @@ __license__ = "Apache-2.0"
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QVBoxLayout, QWidget, QDialog, QDialogButtonBox
 
-
 class ConfirmSelectionWindow(QDialog):
     def __init__(self):
         super().__init__()
