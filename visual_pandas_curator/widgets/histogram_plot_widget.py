@@ -10,15 +10,15 @@ from overrides import override
 
 
 class HistogramPlotWidget(DataFramePlotWidget):
-    def __init__(self, plot_config_dict: dict, parentWindow):
-        super(HistogramPlotWidget, self).__init__(plot_config_dict, parentWindow)
+    def __init__(self, plot_config: dict, parentWindow):
+        super(HistogramPlotWidget, self).__init__(plot_config, parentWindow)
 
     @override
     def plot(self, df: pd.DataFrame):
         for i in range(self.subplot_count):
             self.canvas.subplot_axes[i].clear()
             subplot_key = self.subplot_keys[i]
-            subplot_topics_list = self.plot_config_dict[subplot_key]
+            subplot_topics_list = self.plot_config[subplot_key]
             sns.histplot(
                 df[subplot_topics_list],
                 ax=self.canvas.subplot_axes[i],

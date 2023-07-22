@@ -10,8 +10,8 @@ from overrides import override
 
 
 class TimeSeriesDataPlotWidget(DataFramePlotWidget):
-    def __init__(self, plot_config_dict: dict, parentWindow):
-        super(TimeSeriesDataPlotWidget, self).__init__(plot_config_dict, parentWindow)
+    def __init__(self, plot_config: dict, parentWindow):
+        super(TimeSeriesDataPlotWidget, self).__init__(plot_config, parentWindow)
         self.setup_span(parentWindow)
 
     def setup_span(self, parentWindow):
@@ -35,7 +35,7 @@ class TimeSeriesDataPlotWidget(DataFramePlotWidget):
 
         for i in range(self.subplot_count):
             subplot_key = self.subplot_keys[i]
-            subplot_topics_list = self.plot_config_dict[subplot_key]
+            subplot_topics_list = self.plot_config[subplot_key]
             for topic in subplot_topics_list:
                 self.canvas.subplot_axes[i].plot(
                     df[self.x_axis_col], df[topic], label=topic
