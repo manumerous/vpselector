@@ -2,7 +2,7 @@ __author__ = "Manuel Yves Galliker"
 __maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
-from visual_pandas_curator.widgets.dataframe_plot_widget import DataFramePlotWidget
+from vpselector.widgets.dataframe_plot_widget import DataFramePlotWidget
 
 import seaborn as sns
 import pandas as pd

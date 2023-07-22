@@ -1,5 +1,5 @@
 [project]
-name = "visual-pandas-curator"
+name = "vpselector"
 version = "0.1.0"
 description = "Visualize and interactively select time-series data from a pandas DataFrame."
 readme = "README.md"
@@ -32,4 +32,4 @@ format = [
 ]
 
 [project.urls]
-repository = "https://github.com/manumerous/visual_pandas_curator"
+repository = "https://github.com/manumerous/vpselector"

@@ -8,7 +8,7 @@ from pandas.core.indexes.base import Index
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 
-from visual_pandas_curator.windows.main_window import MainWindow
+from vpselector.windows.main_window import MainWindow
 
 # use this function if no pyqt app is running
 def select_visual_data(data : pd.DataFrame , plot_config : dict):

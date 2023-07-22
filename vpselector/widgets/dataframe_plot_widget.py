@@ -3,7 +3,7 @@ __maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
 
-from visual_pandas_curator.widgets.mpl_widget import MplWidget
+from vpselector.widgets.mpl_widget import MplWidget
 
 from abc import abstractmethod
 import pandas as pd

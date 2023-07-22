@@ -6,9 +6,9 @@ import pandas as pd
 from pathlib import Path
 
 
-import visual_pandas_curator
+import vpselector
 
-def test_visual_pandas_curator():
+def test_vpselector():
     test_file_path = str(Path(__file__).parent.absolute()) + "/test/test.csv"
     print(test_file_path)
     plot_config_dict = {
@@ -18,11 +18,11 @@ def test_visual_pandas_curator():
     }
     data_df = pd.read_csv(test_file_path, index_col=0)
 
-    selected_df = visual_pandas_curator.select_visual_data(data_df, plot_config_dict)
+    selected_df = vpselector.select_visual_data(data_df, plot_config_dict)
     print("Selected dataframe:")
     print(selected_df)
     return
 
 
 if __name__ == "__main__":
-    test_visual_pandas_curator()
+    test_vpselector()

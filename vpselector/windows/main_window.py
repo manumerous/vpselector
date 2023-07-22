@@ -3,9 +3,9 @@ __maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
 
-from visual_pandas_curator.windows.confirm_selection_window import ConfirmSelectionWindow
-from visual_pandas_curator.widgets.time_series_data_plot_widget import TimeSeriesDataPlotWidget
-from visual_pandas_curator.widgets.histogram_plot_widget import HistogramPlotWidget
+from vpselector.windows.confirm_selection_window import ConfirmSelectionWindow
+from vpselector.widgets.time_series_data_plot_widget import TimeSeriesDataPlotWidget
+from vpselector.widgets.histogram_plot_widget import HistogramPlotWidget
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QLabel, QPushButton
