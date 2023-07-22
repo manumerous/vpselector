@@ -9,7 +9,7 @@ from pathlib import Path
 import visual_pandas_curator
 
 def test_visual_pandas_curator():
-    test_file_path = str(Path(__file__).parent.absolute()) + "/resources/test.csv"
+    test_file_path = str(Path(__file__).parent.absolute()) + "/test/test.csv"
     print(test_file_path)
     plot_config_dict = {
         "x_axis_col": "timestamp",
