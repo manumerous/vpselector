@@ -32,5 +32,4 @@ format = [
 ]
 
 [project.urls]
-documentation = "https://github.com/manumerous/visual_dataframe_selector/blob/master/README.md"
 repository = "https://github.com/manumerous/visual_dataframe_selector"
