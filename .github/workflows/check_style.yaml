@@ -17,5 +17,5 @@ jobs:
       run: pip install -r requirements.txt
     - name: Check Code format
       run: |
-        ./Tools/check_code_style.sh .
+        ./scripts/check_code_style.sh .
       shell: bash
