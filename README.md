@@ -11,11 +11,9 @@ The user can subsequentially select different horizontal data windows via click 
 
 ## Install dependencies
 
-The use the visual pandas cropper you need to install python 3.8 and the needed python libraries. It is strongly advised to install the pip packages in a [virtual enviroment](https://docs.python.org/3/tutorial/venv.html) setup for this project, in orger to not interfere with other projects or system packages.
+Install the dependencies from the top-level project folder using:
 
-Install the dependencies from the project folder:
-
-```
+```bash
 pip install .
 ```
 
@@ -25,7 +23,7 @@ To run the programm you can import the function visual_pandas_selector(data_df, 
 
 Alternatively you can test the tool with some reference data by running:
 
-```
+```bash
 python3 test_visual_pandas_curator.py
 ```
 
