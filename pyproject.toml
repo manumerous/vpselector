@@ -7,8 +7,7 @@ requires-python = ">=3.8"
 license = {file = "LICENSE.txt"}
 keywords = ["python", "dataframe", "pandas", "visualization", "data selection", "time-series data", "data tools", "data science", "data-driven engineering", "machine learning", "system identification"]
 authors = [
-  {email = "manuel.galliker@gmx.ch"},
-  {name = "Manuel Yves Galliker"}
+"Manuel Yves Galliker <manuel.galliker@gmx.ch>"
 ]
 maintainers = [
   {name = "Manuel Yves Galliker", email = "manuel.galliker@gmx.ch"}
