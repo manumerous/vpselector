@@ -10,7 +10,7 @@ authors = [
 "Manuel Yves Galliker <manuel.galliker@gmx.ch>"
 ]
 maintainers = [
-  {name = "Manuel Yves Galliker", email = "manuel.galliker@gmx.ch"}
+"Manuel Yves Galliker <manuel.galliker@gmx.ch>"
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
