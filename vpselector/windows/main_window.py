@@ -2,25 +2,14 @@ __author__ = "Manuel Yves Galliker"
 __maintainer__ = "Manuel Yves Galliker"
 __license__ = "Apache-2.0"
 
-try:
-    from src.confirm_selection_window import ConfirmSelectionWindow
-    from src.time_series_data_plot_widget import TimeSeriesDataPlotWidget
-    from src.histogram_plot_widget import HistogramPlotWidget
-except:
-    from visual_dataframe_selector.src.confirm_selection_window import (
-        ConfirmSelectionWindow,
-    )
-    from visual_dataframe_selector.src.time_series_data_plot_widget import (
-        TimeSeriesDataPlotWidget,
-    )
-    from visual_dataframe_selector.src.histogram_plot_widget import HistogramPlotWidget
 
+from vpselector.windows.confirm_selection_window import ConfirmSelectionWindow
+from vpselector.widgets.time_series_data_plot_widget import TimeSeriesDataPlotWidget
+from vpselector.widgets.histogram_plot_widget import HistogramPlotWidget
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QLabel, QPushButton
-
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-
 
 import pandas as pd
 import time
@@ -30,20 +19,20 @@ pd.set_option("mode.chained_assignment", None)
 
 
 class MainWindow(QtWidgets.QMainWindow):
-    def __init__(self, data_df, plot_config_dict, *args, **kwargs):
+    def __init__(self, data : pd.DataFrame , plot_config : dict, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.setWindowTitle("Visual Dataframe Selector")
 
-        self.data_df = data_df
-        self.cropped_data_df = pd.DataFrame()
+        self.data = data
+        self.cropped_data = pd.DataFrame()
         # list of selected tuples (start_index, end_index)
         self.selection_list = []
 
-        self.x_axis_data = self.data_df[plot_config_dict["x_axis_col"]]
+        self.x_axis_data = self.data[plot_config["x_axis_col"]]
 
-        self.data_plt = TimeSeriesDataPlotWidget(plot_config_dict, parentWindow=self)
-        self.data_plt.plot(self.data_df)
-        self.hist_plt = HistogramPlotWidget(plot_config_dict, parentWindow=self)
+        self.data_plt = TimeSeriesDataPlotWidget(plot_config, parentWindow=self)
+        self.data_plt.plot(self.data)
+        self.hist_plt = HistogramPlotWidget(plot_config, parentWindow=self)
 
         # Create toolbar for simultaneous manipulation of all subplots
         self.addToolBar(NavigationToolbar(self.data_plt.canvas, self))
@@ -93,8 +82,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.show()
 
-    def on_region_select_callback(self, min_x_val, max_x_val):
-        # self.data_plt.canvas.subplot_axes[0].set_xlim([min_x_val, max_x_val])
+    def on_region_select_callback(self, min_x_val : int, max_x_val : int):
         cropped_df = self.crop_df(min_x_val, max_x_val)
         self.hist_plot_label.setText("Histogram of currently selected data.")
         self.hist_plt.plot(cropped_df)
@@ -105,20 +93,20 @@ class MainWindow(QtWidgets.QMainWindow):
             print("selection accepted and added: ", min_x_val, max_x_val)
             self.selection_list.append({"start": min_x_val, "end": max_x_val})
             cropped_df["old_index"] = copy.deepcopy(cropped_df.index)
-            self.cropped_data_df = pd.concat([self.cropped_data_df, cropped_df])
-            self.cropped_data_df = self.cropped_data_df.reset_index(drop=True)
+            self.cropped_data = pd.concat([self.cropped_data, cropped_df])
+            self.cropped_data = self.cropped_data.reset_index(drop=True)
             self.save_csv_button.setEnabled(True)
             self.data_plt.update_selection_visualitation(self.selection_list[-1])
-        if self.cropped_data_df.empty:
+        if self.cropped_data.empty:
             self.hist_plt.clear()
         else:
-            self.hist_plt.plot(self.cropped_data_df)
+            self.hist_plt.plot(self.cropped_data)
         self.hist_plot_label.setText("Histogram of all selected data.")
 
         return
 
-    def crop_df(self, x_start, x_end):
-        cropped_df = self.data_df[
+    def crop_df(self, x_start : int, x_end : int):
+        cropped_df = self.data[
             (self.x_axis_data >= x_start) & (self.x_axis_data <= x_end)
         ]
         return cropped_df
@@ -136,7 +124,7 @@ class MainWindow(QtWidgets.QMainWindow):
             split_path = file_path.split(".", 1)
             file_path = split_path[0] + ".csv"
         print("Saving file to: ", file_path)
-        self.cropped_data_df.to_csv(file_path, index=True)
+        self.cropped_data.to_csv(file_path, index=True)
 
         return
 

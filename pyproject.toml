@@ -1,0 +1,34 @@
+[project]
+name = "vpselector"
+version = "0.1.0"
+description = "Visualize and interactively select time-series data from a pandas DataFrame."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE.txt"}
+keywords = ["python", "dataframe", "pandas", "visualization", "data selection", "time-series data", "data tools", "data science", "data-driven engineering", "machine learning", "system identification"]
+authors = [
+"Manuel Yves Galliker <manuel.galliker@gmx.ch>"
+]
+maintainers = [
+"Manuel Yves Galliker <manuel.galliker@gmx.ch>"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+dependencies = [
+  "pandas >= 1.1.5",
+  "PyQt5==5.14.0",
+  "matplotlib>=3.7.1",
+  "seaborn>=0.11.1",
+  "overrides>=7.3.1",
+]
+
+[project.optional-dependencies]
+format = [
+  "black >= 23.3.0"
+]
+
+[project.urls]
+repository = "https://github.com/manumerous/vpselector"

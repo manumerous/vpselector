@@ -6,14 +6,10 @@ import pandas as pd
 from pathlib import Path
 
 
-try:
-    from data_selector import select_visual_data
-except:
-    from visual_dataframe_selector.data_selector import select_visual_data
+import vpselector
 
-
-def test_visual_dataframe_selector():
-    test_file_path = str(Path(__file__).parent.absolute()) + "/resources/test.csv"
+def test_vpselector():
+    test_file_path = str(Path(__file__).parent.absolute()) + "/test/test.csv"
     print(test_file_path)
     plot_config_dict = {
         "x_axis_col": "timestamp",
@@ -22,11 +18,11 @@ def test_visual_dataframe_selector():
     }
     data_df = pd.read_csv(test_file_path, index_col=0)
 
-    selected_df = select_visual_data(data_df, plot_config_dict)
+    selected_df = vpselector.select_visual_data(data_df, plot_config_dict)
     print("Selected dataframe:")
     print(selected_df)
     return
 
 
 if __name__ == "__main__":
-    test_visual_dataframe_selector()
+    test_vpselector()

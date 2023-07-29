@@ -1,35 +1,39 @@
-# Visual Dataframe Selector
+# vpselector
 
-The Visual Dataframe selector is a tool, that can be used to visually select numerical data from a pandas dataframe. This can be usefull for many applications like for example data selection for machine learning or system identification.
+The Visual Pandas Selector is a tool to visually select portions of numeric time-series data from a pandas dataframe. The tool is intended to provide an fast interactive way for manual data selection, as can be very useful in for example machine learning, regression or system identification.
 
 The tool is configurable in order to plot a range of dataframe columns in vertically stacked subplots.
 Hereby the user can specify which columns are plotted in which subplot. Furthermore, a histogram is included to get a rough idea on the distribution of the data.
 
 The user can subsequentially select different horizontal data windows via click and drag and he tool then automatically combines the visually selected sections into a new dataframe.
 
-![visual_dataframe_selector(3)](https://github.com/manumerous/visual_dataframe_selector/assets/18735094/29fb830e-3272-418b-b74d-b19283b88fb0)
+![ezgif com-gif-maker(1)](https://github.com/manumerous/visual-pandas-curator/assets/18735094/b5ebbb99-d2f7-4901-b101-cbeed6c230aa)
+
 
 ## Install dependencies
 
-The use the visual pandas cropper you need to install python 3.8 and the needed python libraries. It is strongly advised to install the pip packages in a [virtual enviroment](https://docs.python.org/3/tutorial/venv.html) setup for this project, in orger to not interfere with other projects or system packages.
+Install the dependencies from the top-level project folder using:
 
-Install the dependencies from the project folder:
-
-```
-pip3 install -r requirements.txt
+```bash
+pip install .
 ```
 
-## Run the Visual Dataframe Selector
+## Include in your project
 
-To run the programm you can import the function visual_pandas_selector(data_df, plot_config_dict) into your coding project. The format of the needed plot_config_dict can be seen in test_visual_pandas_cropper.py.
+To include the vpselector in your project you can import it using `import vpselector`. Then simply use:
 
-Alternatively you can test the tool with some reference data by running:
+- If your project does not contain a pyqt application: `select_visual_data(data : pd.DataFrame, plot_config : dict)` 
 
+- To add the vpselector to an existing pyqt application: `select_visual_data_in_pyqt_app(data : pd.DataFrame, plot_config : dict, pyqt_app)` 
+
+
+## Run the Example 
+
+```bash
+python3 vpselector_example.py
 ```
-python3 test_visual_dataframe_selector.py
-```
 
-## Use the Tool
+#### Use the Tool
 
 - Left click with your mouse and drag to define the desired horizontal window of the data to be selected.
   - The current selection distribution is now visualized in the histogram plot on the right.
