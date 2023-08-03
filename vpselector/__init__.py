@@ -1,3 +1,0 @@
-from . import widgets
-from . import windows
-from .vpselector import select_visual_data, select_visual_data_in_pyqt_app
