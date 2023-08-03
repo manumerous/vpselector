@@ -18,7 +18,7 @@ def test_vpselector():
     }
     data_df = pd.read_csv(test_file_path, index_col=0)
 
-    selected_df = vpselector.select_visual_data(data_df, plot_config_dict)
+    selected_df = vpselector.data_selection.select_visual_data(data_df, plot_config_dict)
     print("Selected dataframe:")
     print(selected_df)
     return
