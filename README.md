@@ -10,17 +10,17 @@ The user can subsequentially select different horizontal data windows via click 
 ![ezgif com-gif-maker(1)](https://github.com/manumerous/visual-pandas-curator/assets/18735094/b5ebbb99-d2f7-4901-b101-cbeed6c230aa)
 
 
-## Install dependencies
+## Install
 
-Install the dependencies from the top-level project folder using:
+Install the package from the top-level project folder using:
 
 ```bash
 pip install .
 ```
 
-## Include in your project
+## Use in your project
 
-To include the vpselector in your project you can import it using `import vpselector`. Then simply use:
+Then simply import it using `import vpselector`. Then simply use:
 
 - If your project does not contain a pyqt application: `select_visual_data(data : pd.DataFrame, plot_config : dict)` 
 
