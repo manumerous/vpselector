@@ -21,7 +21,7 @@ pd.set_option("mode.chained_assignment", None)
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, data : pd.DataFrame , plot_config : dict, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
-        self.setWindowTitle("Visual Dataframe Selector")
+        self.setWindowTitle("Visual Pandas Selector")
 
         self.data = data
         self.cropped_data = pd.DataFrame()
