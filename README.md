@@ -2,8 +2,7 @@
 
 The Visual Pandas Selector is a tool to visually select portions of numeric time-series data from a pandas dataframe. The tool is intended to provide an fast interactive way for manual data selection, as can be very useful in for example machine learning, regression or system identification.
 
-The tool is configurable in order to plot a range of dataframe columns in vertically stacked subplots.
-Hereby the user can specify which columns are plotted in which subplot. Furthermore, a histogram is included to get a rough idea on the distribution of the data.
+Easily configure the tool to plot dataframe columns in vertically stacked subplots and view data distributions with the included histogram feature. With a simple click and drag, you can then select horizontal data windows, and let the tool automatically combine them into a new dataframe.
 
 The user can subsequentially select different horizontal data windows via click and drag and he tool then automatically combines the visually selected sections into a new dataframe.
 
