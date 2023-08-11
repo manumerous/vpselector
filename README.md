@@ -12,7 +12,7 @@ The user can subsequentially select different horizontal data windows via click 
 
 ## Install
 
-I am still working on publishing the project on PyPi (any help is apprechiated there). For now you can insstall the package locally from the top-level project folder using:
+I am still working on publishing the project on PyPi (any help is apprechiated here). For now you can install the package locally from the top-level project folder using:
 
 ```bash
 pip install .
