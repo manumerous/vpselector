@@ -11,7 +11,7 @@ The user can subsequentially select different horizontal data windows via click 
 
 ## Install
 
-Install the package from the top-level project folder using:
+Install the package using:
 
 ```bash
 pip install vpselector
@@ -21,9 +21,9 @@ pip install vpselector
 
 Then simply import it using `import vpselector`. Then simply use:
 
-- If your project does not contain a pyqt application: `select_visual_data(data : pd.DataFrame, plot_config : dict)` 
+- If your project does not contain a pyqt application: `vpselector.select_visual_data(data : pd.DataFrame, plot_config : dict)` 
 
-- To add the vpselector to an existing pyqt application: `select_visual_data_in_pyqt_app(data : pd.DataFrame, plot_config : dict, pyqt_app)` 
+- To add the vpselector to an existing pyqt application: `vpselector.select_visual_data_in_pyqt_app(data : pd.DataFrame, plot_config : dict, pyqt_app)` 
 
 
 ## Run the Example 
