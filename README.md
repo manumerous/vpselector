@@ -2,8 +2,7 @@
 
 The Visual Pandas Selector is a tool to visually select portions of numeric time-series data from a pandas dataframe. The tool is intended to provide an fast interactive way for manual data selection, as can be very useful in for example machine learning, regression or system identification.
 
-The tool is configurable in order to plot a range of dataframe columns in vertically stacked subplots.
-Hereby the user can specify which columns are plotted in which subplot. Furthermore, a histogram is included to get a rough idea on the distribution of the data.
+Easily configure the tool to plot dataframe columns in vertically stacked subplots and view data distributions with the included histogram feature. With a simple click and drag, you can then select horizontal data windows, and let the tool automatically combine them into a new dataframe.
 
 The user can subsequentially select different horizontal data windows via click and drag and he tool then automatically combines the visually selected sections into a new dataframe.
 
@@ -12,19 +11,19 @@ The user can subsequentially select different horizontal data windows via click 
 
 ## Install
 
-I am still working on publishing the project on PyPi (any help is apprechiated here). For now you can install the package locally from the top-level project folder using:
+Install the package using:
 
 ```bash
-pip install .
+pip install vpselector
 ```
 
 ## Use in your project
 
 Then simply import it using `import vpselector`. Then simply use:
 
-- If your project does not contain a pyqt application: `select_visual_data(data : pd.DataFrame, plot_config : dict)` 
+- If your project does not contain a pyqt application: `vpselector.select_visual_data(data : pd.DataFrame, plot_config : dict)` 
 
-- To add the vpselector to an existing pyqt application: `select_visual_data_in_pyqt_app(data : pd.DataFrame, plot_config : dict, pyqt_app)` 
+- To add the vpselector to an existing pyqt application: `vpselector.select_visual_data_in_pyqt_app(data : pd.DataFrame, plot_config : dict, pyqt_app)` 
 
 
 ## Run the Example 
