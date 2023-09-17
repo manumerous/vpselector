@@ -14,7 +14,7 @@ The user can subsequentially select different horizontal data windows via click 
 Install the package from the top-level project folder using:
 
 ```bash
-pip install .
+pip install vpselector
 ```
 
 ## Use in your project
