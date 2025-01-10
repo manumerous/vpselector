@@ -11,7 +11,7 @@ The user can subsequentially select different horizontal data windows via click 
 
 ## Install
 
-Install the package using:
+You can directly install the package in your terminal from [pypi.org](https://pypi.org/project/vpselector/) using:
 
 ```bash
 pip install vpselector
