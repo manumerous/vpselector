@@ -1,3 +1,8 @@
+
+[![PyPI - Version](https://badge.fury.io/py/vpselector.svg)](https://pypi.org/project/vpselector/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/vpselector)](https://pypi.org/project/vpselector/)
+[![CI Pipeline](https://github.com/manumerous/vpselector/actions/workflows/check_style.yaml/badge.svg)](https://github.com/manumerous/vpselector/actions/workflows/check_style.yaml)
+
 # vpselector
 
 The Visual Pandas Selector is a tool to visually select portions of numeric time-series data from a pandas dataframe. The tool is intended to provide an fast interactive way for manual data selection, as can be very useful in for example machine learning, regression or system identification.
